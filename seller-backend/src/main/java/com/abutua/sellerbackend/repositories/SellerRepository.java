@@ -1,4 +1,4 @@
-package com.abutua.sellerbackend.resources;
+package com.abutua.sellerbackend.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

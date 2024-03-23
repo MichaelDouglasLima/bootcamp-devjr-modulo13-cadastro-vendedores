@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.abutua.sellerbackend.models.Seller;
-import com.abutua.sellerbackend.resources.SellerRepository;
+import com.abutua.sellerbackend.repositories.SellerRepository;
 
 @Service
 public class SellerService {
