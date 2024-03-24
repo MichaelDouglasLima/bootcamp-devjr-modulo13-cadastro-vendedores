@@ -1,34 +1,29 @@
 package com.abutua.sellerbackend.models;
 
+import java.io.Serializable;
+
+import com.abutua.sellerbackend.dto.SellerResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="TBL_SELLER")
-public class Seller {
+public class Seller implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name can not be blank")
-    @Size(min=5, max = 255, message = "Name length min=5 and max=255")
     @Column(nullable = false, length = 1024)
     private String name;
 
-    @Min(value=0, message = "Salary min value = 0")
     private Double salary;
 
-    @Min(value=0, message = "Bonus min value = 0")
-    @Max(value=100, message = "Bonus max value = 100")
     private Double bonus;
 
     private Integer gender;
@@ -75,6 +70,48 @@ public class Seller {
 
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    public SellerResponse toDTO() {
+        SellerResponse sellerResponse = new SellerResponse();
+        sellerResponse.setId(id);
+        sellerResponse.setName(name);
+        sellerResponse.setSalary(salary);
+        sellerResponse.setBonus(bonus);
+        sellerResponse.setGender(gender);
+
+        return sellerResponse;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Seller other = (Seller) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Seller [id=" + id + ", name=" + name + ", salary=" + salary + ", bonus=" + bonus + ", gender=" + gender
+                + "]";
     }
 
 }

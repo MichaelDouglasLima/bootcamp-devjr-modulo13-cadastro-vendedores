@@ -1,6 +1,7 @@
 package com.abutua.sellerbackend.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,32 +10,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.abutua.sellerbackend.dto.SellerRequest;
+import com.abutua.sellerbackend.dto.SellerResponse;
 import com.abutua.sellerbackend.models.Seller;
 import com.abutua.sellerbackend.repositories.SellerRepository;
 
 @Service
 public class SellerService {
-    
+
     @Autowired
     private SellerRepository sellerRepository;
 
-    public Seller save(Seller seller) {
-        return sellerRepository.save(seller);
+    public SellerResponse save(SellerRequest sellerRequest) {
+        Seller seller = sellerRepository.save(sellerRequest.toEntity());
+        return seller.toDTO();
     }
 
-    public Seller getById(long id) {
+    public SellerResponse getById(long id) {
         Seller seller = sellerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found"));
-        
-        return seller;
+
+        return seller.toDTO();
     }
 
-    public List<Seller> getAll() {
-        return sellerRepository.findAll();
+    public List<SellerResponse> getAll() {
+        return sellerRepository.findAll()
+                .stream()
+                .map(s -> s.toDTO())
+                .collect(Collectors.toList());
     }
 
-    public void update(@PathVariable long id, @RequestBody Seller sellerUpdate) {
-        Seller seller = getById(id);
+    public void update(@PathVariable long id, @RequestBody SellerRequest sellerUpdate) {
+        Seller seller = sellerRepository.getReferenceById(id);
         seller.setName(sellerUpdate.getName());
         seller.setSalary(sellerUpdate.getSalary());
         seller.setBonus(sellerUpdate.getBonus());
@@ -43,8 +50,7 @@ public class SellerService {
     }
 
     public void deleteById(long id) {
-        Seller seller = getById(id);
-        sellerRepository.delete(seller);
+        sellerRepository.deleteById(id);
     }
 
 }
