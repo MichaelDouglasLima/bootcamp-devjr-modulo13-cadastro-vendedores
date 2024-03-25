@@ -67,4 +67,5 @@ public class SellerController {
         sellerService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
 }

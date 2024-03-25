@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,9 @@ import com.abutua.sellerbackend.dto.SellerRequest;
 import com.abutua.sellerbackend.dto.SellerResponse;
 import com.abutua.sellerbackend.models.Seller;
 import com.abutua.sellerbackend.repositories.SellerRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+// import javax.persistence.EntityNotFoundException;
 
 @Service
 public class SellerService {
@@ -41,16 +45,26 @@ public class SellerService {
     }
 
     public void update(@PathVariable long id, @RequestBody SellerRequest sellerUpdate) {
-        Seller seller = sellerRepository.getReferenceById(id);
-        seller.setName(sellerUpdate.getName());
-        seller.setSalary(sellerUpdate.getSalary());
-        seller.setBonus(sellerUpdate.getBonus());
-        seller.setGender(sellerUpdate.getGender());
-        sellerRepository.save(seller);
+        try {
+            Seller seller = sellerRepository.getReferenceById(id);
+            seller.setName(sellerUpdate.getName());
+            seller.setSalary(sellerUpdate.getSalary());
+            seller.setBonus(sellerUpdate.getBonus());
+            seller.setGender(sellerUpdate.getGender());
+            sellerRepository.save(seller);
+        } 
+        catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Seller not found");
+        }
     }
 
     public void deleteById(long id) {
-        sellerRepository.deleteById(id);
+        try {
+            sellerRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new EntityNotFoundException("Seller not found");
+        }
     }
 
 }
