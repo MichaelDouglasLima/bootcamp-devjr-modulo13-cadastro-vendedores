@@ -8,10 +8,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import { SellerFormComponent } from './components/seller-form/seller-form.component';
+import { SellersComponent } from './components/sellers/sellers.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SellerFormComponent,
+    SellersComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

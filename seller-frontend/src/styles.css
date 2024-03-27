@@ -1,2 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+/* Aparentemento este comando não funciona nesta versão.
+@import "~bootstrap-icons/font/bootstrap-icons.css"; */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
