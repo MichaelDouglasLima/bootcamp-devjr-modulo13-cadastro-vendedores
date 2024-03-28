@@ -1,6 +1,6 @@
 <div class="container mt-3">
 
-    <app-seller-form></app-seller-form>
+    <app-seller-form [seller]="seller" (saveEmitter)="saveSeller()"></app-seller-form>
 
     <div>
 
@@ -22,7 +22,13 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr *ngFor="let seller of sellers">
+                            <td>{{seller.id}}</td>
+                            <td>{{seller.name}}</td>
+                            <td>{{seller.salary}}</td>
+                            <td>{{seller.bonus}}</td>
+                            <td>{{seller.gender}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

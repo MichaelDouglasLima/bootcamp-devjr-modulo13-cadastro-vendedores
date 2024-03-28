@@ -5,40 +5,43 @@
 
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <form>
+            <form [formGroup]="formGroupSeller">
+
                 <div class="row mb-3 mt-3">
                     <label for="inputName" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="inputName">
+                        <input type="text" class="form-control" name="name" id="inputName" formControlName="name">
                     </div>
                 </div>
 
                 <div class="row mb-3 mt-3">
                     <label for="inputSalary" class="col-sm-2 col-form-label">Salário:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="salary" id="inputSalary">
+                        <input type="text" class="form-control" name="salary" id="inputSalary" formControlName="salary">
                     </div>
                 </div>
 
                 <div class="row mb-3 mt-3">
                     <label for="inputBonus" class="col-sm-2 col-form-label">Bônus:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="bonus" id="inputBonus">
+                        <input type="text" class="form-control" name="bonus" id="inputBonus" formControlName="bonus">
                     </div>
                 </div>
 
                 <div class="row mb-3 mt-3">
                     <span class="col-sm-2 col-form-label">Gênero:</span>
                     <div class="col-sm-10">
-                        <select class="form-select" aria-label="Selecione seu Gênero" name="gender" id="selectGender">
+                        <select class="form-select" aria-label="Selecione seu Gênero" name="gender" id="selectGender" formControlName="gender">
                             <option value="" selected>Escolha:</option>
+                            <option value="1" selected>Masculino</option>
+                            <option value="2" selected>Feminino</option>   
                         </select>
                     </div>
                 </div>
 
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="formGroupSeller.invalid">Salvar</button>
                     </div>
                 </div>
             </form>
