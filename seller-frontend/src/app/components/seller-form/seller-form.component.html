@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div *ngIf="seller" class="container mt-3">
     <div class="display-6">
         Formulário de Cadastro
     </div>
@@ -48,7 +48,8 @@
 
                 <div class="row mb-3 mt-3">
                     <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="formGroupSeller.invalid">Salvar</button>
+                        <button type="submit" class="btn btn-primary me-1" (click)="save()" [disabled]="formGroupSeller.invalid">Salvar</button>
+                        <button type="button" class="btn btn-danger" (click)="cancel()">Cancelar</button>
                     </div>
                 </div>
             </form>

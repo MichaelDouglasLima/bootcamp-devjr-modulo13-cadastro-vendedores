@@ -16,6 +16,8 @@ export class SellersComponent implements OnInit {
 
   deleteSeller: Seller = {} as Seller;
 
+  showForm: boolean = false;
+
   isEditing: boolean = false;
 
   constructor(private sellerService: SellerService, private modalService: NgbModal) {
@@ -24,6 +26,10 @@ export class SellersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSellers();
+  }
+
+  create() {
+    this.showForm = true;
   }
 
   saveSeller(save: boolean) {
@@ -41,6 +47,7 @@ export class SellersComponent implements OnInit {
     }
 
     this.seller = {} as Seller;
+    this.showForm = false;
     this.isEditing = false;
   }
 
@@ -54,6 +61,7 @@ export class SellersComponent implements OnInit {
 
   edit(seller: Seller) {
     this.seller = seller;
+    this.showForm = true;
     this.isEditing = true;
   }
 

@@ -40,4 +40,8 @@ export class SellerFormComponent implements OnChanges{
     }
   }
 
+  cancel() {
+    this.saveEmitter.emit(false);
+  }
+
 }
