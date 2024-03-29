@@ -27,9 +27,9 @@
                         <tr *ngFor="let seller of sellers">
                             <td>{{seller.id}}</td>
                             <td>{{seller.name}}</td>
-                            <td>{{seller.salary}}</td>
+                            <td>{{seller.salary | currency: 'BRL' }}</td>
                             <td>{{seller.bonus}}</td>
-                            <td>{{seller.gender}}</td>
+                            <td>{{genders[seller.gender - 1]}}</td>
                             <td class="text-end">
                                 <button class="btn p-1" (click)="edit(seller)"><i class="bi bi-pencil"></i></button>
                                 <button class="btn p-1" (click)="delete(confirmModal, seller)"><i class="bi bi-trash"></i></button>

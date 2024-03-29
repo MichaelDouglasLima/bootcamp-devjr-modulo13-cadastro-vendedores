@@ -20,6 +20,8 @@ export class SellersComponent implements OnInit {
 
   isEditing: boolean = false;
 
+  genders: string[] = ['Masculino', 'Feminino'];
+
   constructor(private sellerService: SellerService, private modalService: NgbModal) {
 
   }
