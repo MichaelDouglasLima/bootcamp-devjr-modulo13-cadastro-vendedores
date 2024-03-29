@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Seller } from '../../interfaces/Seller';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-seller-form',
@@ -19,11 +19,11 @@ export class SellerFormComponent implements OnChanges{
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroupSeller = this.formBuilder.group({
-      id: [''],
-      name: [''],
-      salary: [''],
-      bonus: [''],
-      gender: ['']
+      id: {value:null, disabled:true},
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      salary: ['', [Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]],
+      bonus: ['', [Validators.required, Validators.min(0), Validators.max(100), Validators.pattern("^[0-9]*$")]],
+      gender: ['', [Validators.required]]
     })
   }
 
@@ -43,5 +43,13 @@ export class SellerFormComponent implements OnChanges{
   cancel() {
     this.saveEmitter.emit(false);
   }
+
+  get pfgName() { return this.formGroupSeller.get("name") }
+
+  get pfgSalary() { return this.formGroupSeller.get("salary") }
+
+  get pfgBonus() { return this.formGroupSeller.get("bonus") }
+
+  get pfgGender() { return this.formGroupSeller.get("gender") }
 
 }

@@ -17,7 +17,6 @@ import { HomeComponent } from './components/home/home.component';
 
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
-
 import { registerLocaleData } from '@angular/common';
 
 registerLocaleData(localePt, 'pt');

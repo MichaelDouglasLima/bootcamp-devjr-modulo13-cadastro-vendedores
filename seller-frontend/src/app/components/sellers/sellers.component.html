@@ -28,7 +28,7 @@
                             <td>{{seller.id}}</td>
                             <td>{{seller.name}}</td>
                             <td>{{seller.salary | currency: 'BRL' }}</td>
-                            <td>{{seller.bonus}}</td>
+                            <td>{{seller.bonus}}%</td>
                             <td>{{genders[seller.gender - 1]}}</td>
                             <td class="text-end">
                                 <button class="btn p-1" (click)="edit(seller)"><i class="bi bi-pencil"></i></button>
