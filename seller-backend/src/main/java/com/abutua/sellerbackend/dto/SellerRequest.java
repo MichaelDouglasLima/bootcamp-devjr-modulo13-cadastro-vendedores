@@ -20,6 +20,8 @@ public class SellerRequest {
     @Max(value=100, message = "Bonus max value = 100")
     private Double bonus;
 
+    @Min(value=1, message = "Gender min value = 1")
+    @Max(value=2, message = "Gender max value = 2")
     private Integer gender;
 
     public SellerRequest() {
