@@ -29,7 +29,7 @@
 
                 <div class="row mb-3 mt-3">
                     <label for="inputSalary" class="col-sm-2 col-form-label">Salário:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input type="text" class="form-control" name="salary" id="inputSalary" formControlName="salary">
                         <div *ngIf="ngFormSeller.submitted">
                             <small *ngIf="pfgSalary?.errors?.['required']" class="form-text text-danger">*Salário é requirido!</small>
@@ -37,11 +37,9 @@
                             <small *ngIf="pfgSalary?.errors?.['pattern']" class="form-text text-danger">*Salário precisa ser um número!</small>
                         </div>
                     </div>
-                </div>
 
-                <div class="row mb-3 mt-3">
                     <label for="inputBonus" class="col-sm-2 col-form-label">Bônus:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input type="text" class="form-control" name="bonus" id="inputBonus" formControlName="bonus">
                         <div *ngIf="ngFormSeller.submitted">
                             <small *ngIf="pfgBonus?.errors?.['required']" class="form-text text-danger">*Bônus é requirido!</small>
@@ -54,7 +52,7 @@
 
                 <div class="row mb-3 mt-3">
                     <span class="col-sm-2 col-form-label">Gênero:</span>
-                    <div class="col-sm-10">
+                    <div class="col-sm-3">
                         <select class="form-select" aria-label="Selecione seu Gênero" name="gender" id="selectGender"
                             formControlName="gender">
                             <option value="" selected>Escolha:</option>
