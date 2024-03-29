@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Seller } from '../../interfaces/Seller';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './seller-form.component.html',
   styleUrl: './seller-form.component.css'
 })
-export class SellerFormComponent {
+export class SellerFormComponent implements OnChanges{
 
   @Input()
   seller: Seller = {} as Seller;
@@ -25,13 +25,18 @@ export class SellerFormComponent {
       bonus: [''],
       gender: ['']
     })
+  }
 
+  ngOnChanges(): void {
+    if (this.seller.id) {
+      this.formGroupSeller.setValue(this.seller);
+    }
   }
 
   save() {
     if (this.formGroupSeller.valid) {
       Object.assign(this.seller, this.formGroupSeller.value);
-      this.saveEmitter.emit();
+      this.saveEmitter.emit(true);
     }
   }
 

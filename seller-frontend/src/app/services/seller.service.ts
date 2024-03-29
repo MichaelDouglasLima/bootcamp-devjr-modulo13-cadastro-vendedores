@@ -10,12 +10,20 @@ export class SellerService {
 
   constructor(private http: HttpClient) { }
 
+  save(seller:Seller) {
+    return this.http.post<Seller>("http://localhost:8080/sellers", seller);
+  }
+
   getSellers(): Observable<Seller[]> {
     return this.http.get<Seller[]>("http://localhost:8080/sellers");
   }
 
-  save(seller:Seller) {
-    return this.http.post<Seller>("http://localhost:8080/sellers", seller);
+  update(seller:Seller) {
+    return this.http.put<Seller>(`http://localhost:8080/sellers/${seller.id}`, seller);
+  }
+
+  delete(seller:Seller) {
+    return this.http.delete<void>(`http://localhost:8080/sellers/${seller.id}`);
   }
 
 }
