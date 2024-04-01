@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import com.abutua.sellerbackend.dto.SellerRequest;
 import com.abutua.sellerbackend.dto.SellerResponse;
 import com.abutua.sellerbackend.models.Seller;
 import com.abutua.sellerbackend.repositories.SellerRepository;
+import com.abutua.sellerbackend.services.exceptions.DatabaseException;
 
 import jakarta.persistence.EntityNotFoundException;
 // import javax.persistence.EntityNotFoundException;
@@ -60,10 +62,15 @@ public class SellerService {
 
     public void deleteById(long id) {
         try {
-            sellerRepository.deleteById(id);
+            if (sellerRepository.existsById(id)) {
+                sellerRepository.deleteById(id);
+            }
+            else {
+                throw new EntityNotFoundException("Seller not found");
+            }
         }
-        catch (EmptyResultDataAccessException e) {
-            throw new EntityNotFoundException("Seller not found");
+        catch (DataIntegrityViolationException e) {
+            throw new  DatabaseException("Conflict when removing seller");
         }
     }
 

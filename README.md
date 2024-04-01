@@ -12,8 +12,8 @@ O projeto consiste em uma aplicação web para cadastro e gerenciamento de vende
 
 ## Tecnologias
 
-- Frontend: HTML, CSS e JavaScript.
+- Frontend: HTML, CSS e TypeScript.
 - Backend: Java.
-- Banco de Dados: H2
-- Ferramenta: Visual Studio Code
+- Banco de Dados: H2.
+- Ferramenta: Visual Studio Code.
 - Framework: Angular, BootStrap e Spring.
