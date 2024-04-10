@@ -69,7 +69,7 @@ public class SellerService {
             }
         }
         catch (DataIntegrityViolationException e) {
-            throw new  DatabaseException("Conflict when removing seller");
+            throw new DatabaseException("Conflict when removing seller");
         }
     }
 
